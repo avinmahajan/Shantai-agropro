@@ -8,19 +8,19 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Set up Python version
-        uses: actions/setup-python@v1
+      - name: Set up Python
+        uses: actions/setup-python@latest_version
         with:
-          python-version: '3.12'
+          python-version: 3.8
 
       - name: Create and start virtual environment
         run: |
