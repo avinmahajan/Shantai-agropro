@@ -36,7 +36,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant: ${{ secrets.AZURE_TENANT_ID }}
+          secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+
+      # ... rest of your workflow
+
 
       - name: Set up Python version
         uses: actions/setup-python@v3.0.0
@@ -81,9 +88,12 @@ jobs:
       - name: Azure Login
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    creds: ${{ secrets.AZURE_CLIENT_ID }}
+    tenant: ${{ secrets.AZURE_TENANT_ID }}
+    secret: ${{ secrets.AZURE_CLIENT_SECRET }}
 
-      - name: 'Deploy to Azure Web App'
+
+        - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
