@@ -20,8 +20,8 @@
 name: Build and deploy Python app to Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: your-app-name  # set this to the name of your Azure Web App
-  PYTHON_VERSION: '3.8'              # set this to the Python version to use
+  AZURE_WEBAPP_NAME: your-app-name
+  PYTHON_VERSION: '3.8'
 
 on:
   push:
@@ -47,6 +47,7 @@ jobs:
           
       - name: Create and start virtual environment
         run: |
+          python -m venv venv
           source ./venv/bin/activate
 
       - name: Install dependencies
@@ -60,7 +61,7 @@ jobs:
           name: python-app
           path: |
             .
-            !venv/
+            venv/
 
   deploy:
     permissions:
