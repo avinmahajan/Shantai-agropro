@@ -45,15 +45,12 @@ jobs:
         run: |
           python -m venv venv
           source ./venv/bin/activate
-
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-
       - name: Build artifact
         run: |
           # Your build commands go here
-
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
@@ -73,8 +70,6 @@ jobs:
         with:
           name: python-app
           path: .
- 
-
 
       - name: Azure Login
         uses: azure/login@v1
@@ -85,4 +80,3 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
 
       # Add your deployment steps here
-
